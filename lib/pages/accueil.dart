@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
                           .snapshots(),
                       builder: (context, snapshot) {
                         return Text(snapshot.data.documents[0]
-                            ['prenom']); ///////////////
+                            ['prenom']); //////////////
                       },
                     );
                   },
