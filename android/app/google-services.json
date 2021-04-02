@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "606237788773",
+    "firebase_url": "https://swimplan-84841-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "swimplan-84841",
+    "storage_bucket": "swimplan-84841.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606237788773:android:1d297cd300cd174397d48c",
+        "android_client_info": {
+          "package_name": "com.example.swimplan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606237788773-9toc0l1eroagn3lt2gorjqqf2nc0adfo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swimplan",
+            "certificate_hash": "8e5b6fd58e89deb81d65fbf10395624b637a7c45"
+          }
+        },
+        {
+          "client_id": "606237788773-lb5i7h06hne7dl7i4hacje4kb70g99m7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_XMAFp2mhSv60r49vzHHj384GNbL2jQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606237788773-lb5i7h06hne7dl7i4hacje4kb70g99m7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
