@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swimplan/pages/connexion/sign_in.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
+User currentUser = FirebaseAuth.instance.currentUser;
+String userName;
+String userSurname;
+String userEmail;
 
 class Home extends StatelessWidget {
   @override
@@ -10,9 +13,9 @@ class Home extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Bienvenue !",
+          title: Text("Swim Plan",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-          toolbarHeight: 100,
+          //toolbarHeight: 100,
         ),
         body: Container(
           width: double.infinity,
@@ -20,30 +23,19 @@ class Home extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                  onPressed: () {
-                    StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection('Users')
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        return Text(snapshot.data.documents[0]
-                            ['prenom']); //////////////
-                      },
-                    );
-                  },
+                  onPressed: () {},
                   child: Text("Utilisateur actuellement connecté")),
               Text("Vous êtes connecté!"),
               OutlinedButton(
                 child: Text("Se déconnecter",
                     style: TextStyle(color: Colors.black)),
                 onPressed: () async {
-                  if (FirebaseAuth.instance.currentUser != null) {
+                  if (currentUser != null) {
                     FirebaseAuth.instance.signOut();
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Connect()),
                     );
-                    print(FirebaseAuth.instance.currentUser);
                   }
                 },
               ),

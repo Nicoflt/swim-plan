@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swimplan/pages/wrapper.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:swimplan/pages/accueil.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Swim Plan',
-      home: Wrapper(),
+      home: Home(),
     );
   }
 }

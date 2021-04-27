@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swimplan/pages/connexion/sign_in.dart';
 import 'package:swimplan/pages/connexion/sign_up.dart';
-import 'package:swimplan/pages/chargement.dart';
 
 class Wrapper extends StatefulWidget {
   @override

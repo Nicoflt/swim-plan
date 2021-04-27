@@ -101,17 +101,21 @@ class _RegisterState extends State<Register> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
-                  child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF105660), // background
+                      onPrimary: Colors.white, // foreground
                     ),
-                    color: Color(0xFF105660),
-                    textColor: Colors.white,
-                    child: Text("S'inscrire"),
                     onPressed: () async {
+                      if (email != '' ||
+                          password != '' ||
+                          name != '' ||
+                          surname != '') {
+                        addUser();
+                      }
                       _register();
-                      addUser();
                     },
+                    child: Text("S'inscrire"),
                   ),
                 ),
               ],

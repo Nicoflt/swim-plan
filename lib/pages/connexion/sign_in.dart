@@ -4,6 +4,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:swimplan/pages/accueil.dart';
 import 'package:swimplan/pages/chargement.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+// Get informations of the collection "Users" on Firebase
+Future<void> userGet() {
+  return FirebaseFirestore.instance
+      .collection('Users')
+      .where('email', isEqualTo: currentUser.email)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      userName = doc["prenom"];
+      userSurname = doc["nom"];
+      userEmail = doc["email"];
+    });
+  });
+}
 
 class Connect extends StatefulWidget {
   final Function changePage;
@@ -118,12 +134,12 @@ class _ConnectState extends State<Connect> {
               onPressed: () async {
                 signInWithEmailAndPassword();
                 if (FirebaseAuth.instance.currentUser != null) {
-                  print(FirebaseAuth.instance.currentUser);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Home()),
                   );
                 }
+                userGet();
               },
             ),
           )
