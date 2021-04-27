@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Swim Plan',
-      home: Home(),
+      home: Menu(),
     );
   }
 }

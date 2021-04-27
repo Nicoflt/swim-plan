@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:swimplan/pages/connexion/sign_in.dart';
+import 'package:swimplan/pages/pages - accueil/home.dart';
+import 'package:swimplan/pages/pages - accueil/search.dart';
+import 'package:swimplan/pages/pages - accueil/planning.dart';
+import 'package:swimplan/pages/pages - accueil/profile.dart';
 
-User currentUser = FirebaseAuth.instance.currentUser;
-String userName;
-String userSurname;
-String userEmail;
+class Menu extends StatefulWidget {
+  @override
+  _MenuState createState() => _MenuState();
+}
 
-class Home extends StatelessWidget {
+class _MenuState extends State<Menu> {
+  int _currentIndex = 0;
+
+  final tabs = [
+    Home(),
+    Search(),
+    Planning(),
+    Profile(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,32 +26,36 @@ class Home extends StatelessWidget {
         appBar: AppBar(
           title: Text("Swim Plan",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-          //toolbarHeight: 100,
         ),
-        body: Container(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Utilisateur actuellement connecté")),
-              Text("Vous êtes connecté!"),
-              OutlinedButton(
-                child: Text("Se déconnecter",
-                    style: TextStyle(color: Colors.black)),
-                onPressed: () async {
-                  if (currentUser != null) {
-                    FirebaseAuth.instance.signOut();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Connect()),
-                    );
-                  }
-                },
-              ),
-            ],
-          ),
+        body: tabs[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          type: BottomNavigationBarType.fixed,
+          selectedFontSize: 12.0,
+          selectedItemColor: Colors.blue,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today_outlined),
+              label: 'Planning',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_sharp),
+              label: 'Profile',
+            ),
+          ],
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
         ),
       ),
     );
