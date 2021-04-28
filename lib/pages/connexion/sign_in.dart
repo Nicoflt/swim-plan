@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:swimplan/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:swimplan/pages/pages - accueil/home.dart';
+import 'package:swimplan/pages/pages - accueil/profile.dart';
+import 'package:swimplan/pages/accueil.dart';
 import 'package:swimplan/pages/chargement.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -136,7 +137,7 @@ class _ConnectState extends State<Connect> {
                 if (FirebaseAuth.instance.currentUser != null) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Home()),
+                    MaterialPageRoute(builder: (context) => Menu()),
                   );
                 }
                 userGet();
@@ -189,14 +190,14 @@ class _ConnectState extends State<Connect> {
                       if (FirebaseAuth.instance.currentUser != null) {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Home()),
+                          MaterialPageRoute(builder: (context) => Menu()),
                         );
                       }
                     });
                     if (FirebaseAuth.instance.currentUser != null) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Home()),
+                        MaterialPageRoute(builder: (context) => Menu()),
                       );
                     }
                   },
