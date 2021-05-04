@@ -16,6 +16,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.blueGrey,
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -23,7 +24,7 @@ class _ProfileState extends State<Profile> {
           ElevatedButton(
               onPressed: () {},
               child: Text("Utilisateur actuellement connecté")),
-          Text(" est connecté!"),
+          Text(userName + " est connecté!"),
           OutlinedButton(
             child:
                 Text("Se déconnecter", style: TextStyle(color: Colors.black)),
