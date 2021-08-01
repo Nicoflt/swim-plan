@@ -22,9 +22,11 @@ class _ProfileState extends State<Profile> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                print(userName);
+              },
               child: Text("Utilisateur actuellement connecté")),
-          Text(userName + " est connecté!"),
+          Text("L'utilisateur est connecté!"),
           OutlinedButton(
             child:
                 Text("Se déconnecter", style: TextStyle(color: Colors.black)),

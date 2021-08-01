@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:swimplan/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:swimplan/pages/pages - accueil/profile.dart';
@@ -40,18 +39,29 @@ class _ConnectState extends State<Connect> {
   Widget build(BuildContext context) {
     return loading
         ? Loading()
-        : Scaffold(
-            resizeToAvoidBottomInset: false,
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(height: 20),
-                titleSection(),
-                signInSection(),
-                signInWithSection(),
-                SizedBox(height: 30),
-                signUpSection(),
-              ],
+        : Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFF9C9AFF),
+                  Color(0xFF5D4BFF),
+                ],
+              ),
+            ),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              resizeToAvoidBottomInset: false,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  titleSection(),
+                  signInSection(),
+                  signInWithSection(),
+                  signUpSection(),
+                ],
+              ),
             ),
           );
   }
@@ -60,17 +70,17 @@ class _ConnectState extends State<Connect> {
     return Container(
       child: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 50),
-            child: FlutterLogo(size: 70),
-          ),
           Text(
             "Swim Plan",
             style: TextStyle(
-              fontWeight: FontWeight.bold,
+              fontFamily: 'Lato',
               fontSize: 30,
-              color: kTextColor,
+              color: Colors.white,
             ),
+          ),
+          Text(
+            "Take time to move...",
+            style: TextStyle(),
           ),
         ],
       ),
@@ -97,53 +107,48 @@ class _ConnectState extends State<Connect> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Color(0xFFbeeff6),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.8),
-            spreadRadius: 5,
-            blurRadius: 5,
-            offset: Offset(3, 3),
-          ),
-        ],
+        boxShadow: [],
       ),
       margin: EdgeInsets.all(20),
       padding: EdgeInsets.all(10),
       child: Column(
         children: [
-          Text(
-            "Connexion à votre compte",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
           TextFormField(
-            decoration: InputDecoration(labelText: 'Email'),
+            decoration: InputDecoration(labelText: 'e-mail'),
             onChanged: (val) => email = val,
           ),
           TextFormField(
-            decoration: InputDecoration(labelText: 'Mot de passe'),
+            decoration: InputDecoration(labelText: 'mot de passe'),
             obscureText: true,
             onChanged: (val) => password = val,
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Color(0xFF105660)),
-              child: Text('Se connecter'),
-              onPressed: () async {
-                signInWithEmailAndPassword();
-                if (FirebaseAuth.instance.currentUser != null) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Menu()),
-                  );
-                }
-                userGet();
-              },
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.white,
+              minimumSize: Size(double.infinity, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
             ),
-          )
+            child: Text(
+              'Se connecter',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            onPressed: () async {
+              signInWithEmailAndPassword();
+              if (FirebaseAuth.instance.currentUser != null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Menu()),
+                );
+              }
+              userGet();
+            },
+          ),
         ],
       ),
     );
@@ -169,42 +174,85 @@ class _ConnectState extends State<Connect> {
     }
 
     return Container(
+      margin: EdgeInsets.all(30),
       child: Column(
         children: [
-          Text("Se connecter avec:",
-              style: TextStyle(
-                fontSize: 20,
-              )),
-          Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  icon: Image.asset('assets/images/google.png'),
-                  iconSize: 50,
-                  onPressed: () async {
-                    signInWithGoogle();
-                    setState(() {
-                      //loading = true;
-                      if (FirebaseAuth.instance.currentUser != null) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Menu()),
-                        );
-                      }
-                    });
-                    if (FirebaseAuth.instance.currentUser != null) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Menu()),
-                      );
-                    }
-                  },
-                ),
-                Image.asset('assets/images/facebook.png', height: 50),
-              ],
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xFF333333),
+              minimumSize: Size(double.infinity, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
             ),
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                      text: 'SE ',
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12)),
+                  TextSpan(
+                      text: 'CONNECTER ',
+                      style: TextStyle(
+                          color: Colors.yellow,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12)),
+                  TextSpan(
+                      text: 'AVEC ',
+                      style: TextStyle(
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12)),
+                  TextSpan(
+                      text: 'GOOGLE ',
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12)),
+                ],
+              ),
+            ),
+            onPressed: () async {
+              signInWithGoogle();
+              setState(() {
+                //loading = true;
+                if (FirebaseAuth.instance.currentUser != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Menu()),
+                  );
+                }
+              });
+              if (FirebaseAuth.instance.currentUser != null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Menu()),
+                );
+              }
+            },
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xFF333333),
+              minimumSize: Size(double.infinity, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+            ),
+            child: Text(
+              'SE CONNECTER AVEC FACEBOOK',
+              style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
+            onPressed: () async {
+              // AJOUTER FONCTIONNALITE DE CONNEXION AVEC FACEBOOK
+            },
           ),
         ],
       ),
@@ -213,12 +261,13 @@ class _ConnectState extends State<Connect> {
 
   Widget signUpSection() {
     return Container(
+      decoration: BoxDecoration(color: Colors.black),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Vous n'êtes pas encore enregistré? "),
+          Text("Mot de passe oublié?", style: TextStyle(color: Colors.white)),
           InkWell(
-            child: Text("Cliquez ici!", style: TextStyle(color: Colors.blue)),
+            child: Text("S'inscrire", style: TextStyle(color: Colors.white)),
             onTap: () {
               widget.changePage();
             },
