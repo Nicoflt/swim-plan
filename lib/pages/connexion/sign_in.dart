@@ -261,16 +261,39 @@ class _ConnectState extends State<Connect> {
 
   Widget signUpSection() {
     return Container(
-      decoration: BoxDecoration(color: Colors.black),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Mot de passe oublié?", style: TextStyle(color: Colors.white)),
-          InkWell(
-            child: Text("S'inscrire", style: TextStyle(color: Colors.white)),
-            onTap: () {
-              widget.changePage();
-            },
+          Expanded(
+            flex: 10,
+            child: Container(
+              child: Text(
+                "Mot de passe oublié?",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              child: Text("|",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 50)),
+            ),
+          ),
+          Expanded(
+            flex: 10,
+            child: Container(
+              child: InkWell(
+                child: Text("S'inscrire",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  widget.changePage();
+                },
+              ),
+            ),
           ),
         ],
       ),
