@@ -7,6 +7,7 @@ import 'package:swimplan/pages/chargement.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Get informations of the collection "Users" on Firebase
+// Used at the moment of connexion with email and password
 Future<void> userGet() {
   return FirebaseFirestore.instance
       .collection('Users')
@@ -54,12 +55,23 @@ class _ConnectState extends State<Connect> {
               backgroundColor: Colors.transparent,
               resizeToAvoidBottomInset: false,
               body: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  titleSection(),
-                  signInSection(),
-                  signInWithSection(),
-                  signUpSection(),
+                  Container(
+                    child: titleSection(),
+                  ),
+                  Container(
+                    //decoration: BoxDecoration(color: Colors.green),
+                    child: signInSection(),
+                  ),
+                  Container(
+                    //decoration: BoxDecoration(color: Colors.red),
+                    child: signInWithSection(),
+                  ),
+                  Container(
+                    //decoration: BoxDecoration(color: Colors.yellow),
+                    child: signUpSection(),
+                  ),
                 ],
               ),
             ),
@@ -68,6 +80,7 @@ class _ConnectState extends State<Connect> {
 
   Widget titleSection() {
     return Container(
+      margin: EdgeInsets.only(bottom: 80),
       child: Column(
         children: [
           Text(
@@ -107,47 +120,54 @@ class _ConnectState extends State<Connect> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        boxShadow: [],
       ),
-      margin: EdgeInsets.all(20),
-      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.all(30),
       child: Column(
         children: [
           TextFormField(
-            decoration: InputDecoration(labelText: 'e-mail'),
+            decoration: InputDecoration(
+              labelText: 'e-mail',
+              labelStyle: TextStyle(color: Colors.white),
+            ),
             onChanged: (val) => email = val,
           ),
           TextFormField(
-            decoration: InputDecoration(labelText: 'mot de passe'),
+            decoration: InputDecoration(
+              labelText: 'mot de passe',
+              labelStyle: TextStyle(color: Colors.white),
+            ),
             obscureText: true,
             onChanged: (val) => password = val,
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.white,
-              minimumSize: Size(double.infinity, 40),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                minimumSize: Size(double.infinity, 40),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
               ),
-            ),
-            child: Text(
-              'Se connecter',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+              child: Text(
+                'Se connecter',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
+              onPressed: () async {
+                signInWithEmailAndPassword();
+                if (FirebaseAuth.instance.currentUser != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Menu()),
+                  );
+                }
+                userGet();
+              },
             ),
-            onPressed: () async {
-              signInWithEmailAndPassword();
-              if (FirebaseAuth.instance.currentUser != null) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Menu()),
-                );
-              }
-              userGet();
-            },
           ),
         ],
       ),
@@ -261,6 +281,7 @@ class _ConnectState extends State<Connect> {
 
   Widget signUpSection() {
     return Container(
+      margin: EdgeInsets.only(top: 50),
       child: Row(
         children: [
           Expanded(
