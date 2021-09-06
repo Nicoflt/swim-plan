@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swimplan/configuration/constants.dart';
 import 'package:swimplan/pages/pages - accueil/home.dart';
 import 'package:swimplan/pages/pages - accueil/search.dart';
 import 'package:swimplan/pages/pages - accueil/planning.dart';
@@ -24,6 +25,7 @@ class _MenuState extends State<Menu> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: secondaryColor,
           title: Text("Swim Plan",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
         ),

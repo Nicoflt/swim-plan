@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:swimplan/configuration/constants.dart';
 import 'package:swimplan/pages/pages - accueil/profile.dart';
 import 'package:swimplan/pages/accueil.dart';
 import 'package:swimplan/pages/chargement.dart';
@@ -42,14 +43,7 @@ class _ConnectState extends State<Connect> {
         ? Loading()
         : Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFF9C9AFF),
-                  Color(0xFF5D4BFF),
-                ],
-              ),
+              gradient: primaryColor,
             ),
             child: Scaffold(
               backgroundColor: Colors.transparent,
@@ -86,14 +80,18 @@ class _ConnectState extends State<Connect> {
           Text(
             "Swim Plan",
             style: TextStyle(
+              letterSpacing: 5,
               fontFamily: 'Lato',
-              fontSize: 30,
+              fontSize: 40,
               color: Colors.white,
             ),
           ),
           Text(
             "Take time to move...",
-            style: TextStyle(),
+            style: TextStyle(
+              letterSpacing: 3,
+              fontSize: 15,
+            ),
           ),
         ],
       ),
